@@ -14,46 +14,57 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Keskin bir font */
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            /* Daha açık bir arka plan */
+            background: linear-gradient(135deg, #4A148C 0%, #2A0845 100%);
             min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            /* Dış boşluk azaltıldı */
+            padding: 10px;
+            /* Animasyonun önünde olması için */
+            position: relative;
+            z-index: 1;
         }
 
         .header {
             text-align: center;
             padding: 60px 0;
             color: white;
+            position: relative;
         }
 
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 8px solid #3498db;
+            /* Daha belirgin bir çerçeve */
+            border: 8px solid #6A1B9A;
             margin-bottom: 20px;
             object-fit: cover;
-            box-shadow: 0 15px 35px rgba(52, 152, 219, 0.4);
+            /* Daha belirgin gölge */
+            box-shadow: 0 15px 35px rgba(106, 27, 154, 0.4);
             transition: all 0.3s ease;
         }
 
         .profile-img:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.5);
+            /* Daha belirgin gölge */
+            box-shadow: 0 20px 40px rgba(106, 27, 154, 0.5);
         }
 
         .name {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(52, 152, 219, 0.2);
+            /* Daha belirgin metin gölgesi */
+            text-shadow: 2px 2px 4px rgba(106, 27, 154, 0.2);
         }
 
         .title {
@@ -74,7 +85,8 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            /* Daha şeffaf arka plan */
+            background: rgba(255, 255, 255, 0.08);
             color: white;
             text-decoration: none;
             display: flex;
@@ -82,13 +94,15 @@
             justify-content: center;
             font-size: 1.2rem;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         .social-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+            /* Daha belirgin arka plan */
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+            /* Daha belirgin gölge */
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
 
         .bionluk-button {
@@ -114,10 +128,12 @@
         }
 
         .content {
-            background: white;
+            /* Arka plan şeffaf */
+            background: transparent;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            /* Daha hafif gölge */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             margin-top: 40px;
         }
 
@@ -131,16 +147,16 @@
 
         .section-title {
             font-size: 1.8rem;
-            color: #3498db;
+            color: #fff; /* Bölüm başlığı beyaz */
             margin-bottom: 20px;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid #6A1B9A;
             padding-bottom: 10px;
         }
 
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #555;
+            color: #fff; /* Yazı rengi beyaz */
         }
 
         .skills {
@@ -150,12 +166,13 @@
         }
 
         .skill {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #6A1B9A, #4A148C);
             color: white;
             padding: 10px 20px;
             border-radius: 25px;
             font-weight: 500;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            /* Daha belirgin gölge */
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
         }
 
         .contact-info {
@@ -169,25 +186,27 @@
             align-items: center;
             gap: 15px;
             padding: 15px;
-            background: #f8f9fa;
+            /* Arka plan şeffaf */
+            background: transparent;
             border-radius: 10px;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #6A1B9A;
+            color: #fff; /* Yazı rengi beyaz */
         }
 
         .contact-item i {
             font-size: 1.5rem;
-            color: #3498db;
+            color: #ffffff;
             width: 30px;
         }
 
         .contact-item a {
-            color: #333;
+            color: #fff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .contact-item a:hover {
-            color: #3498db;
+            color: #6A1B9A;
         }
 
         .projects {
@@ -197,11 +216,13 @@
         }
 
         .project {
-            background: #f8f9fa;
+            /* Arka plan şeffaf */
+            background: transparent;
             padding: 20px;
             border-radius: 15px;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #6A1B9A;
             transition: transform 0.3s ease;
+            color: #fff; /* Yazı rengi beyaz */
         }
 
         .project:hover {
@@ -209,12 +230,12 @@
         }
 
         .project h3 {
-            color: #3498db;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
         .project p {
-            color: #666;
+            color: #fff;
             line-height: 1.6;
         }
 
@@ -245,13 +266,47 @@
                 font-size: 1rem;
             }
         }
+
+        /* Yağmur Animasyonu Stilleri */
+        #rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            /* En üstte olması için */
+            z-index: 1000;
+        }
+
+        .rain-letter {
+            position: absolute;
+            font-size: 20px;
+            color: #fff;
+            opacity: 0.7;
+            /* Başlangıçta görünmemesi için */
+            transform: translateY(-100%);
+            animation: rain 5s linear infinite;
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="rain-container"></div>
     <div class="container">
         <!-- Header Section -->
         <header class="header">
-            <img src="resimler/profil.jpeg" alt="Profil Fotoğrafı" class="profile-img">
+            
+            <img src="resimler/poto.jpg" alt="Profil Fotoğrafı" class="profile-img">
             <h1 class="name">Seloware</h1>
             <p class="title">Mobil App & Web Developer</p>
             
@@ -362,7 +417,54 @@
                 section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(section);
             });
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Observe all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
+        // Yağmur Animasyonu JavaScript
+        const rainContainer = document.getElementById('rain-container');
+        const letters = 'seloware';
+
+        function createRain() {
+            const letter = letters[Math.floor(Math.random() * letters.length)];
+            const rainLetter = document.createElement('span');
+            rainLetter.classList.add('rain-letter');
+            rainLetter.textContent = letter;
+            rainLetter.style.left = Math.random() * 100 + 'vw';
+            rainLetter.style.animationDelay = Math.random() * 5 + 's';
+            rainContainer.appendChild(rainLetter);
+
+            rainLetter.addEventListener('animationend', () => {
+                rainLetter.remove();
+            });
+        }
+
+        setInterval(createRain, 100);
     </script>
 </body>
 </html>
