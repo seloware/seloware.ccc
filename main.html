@@ -10,23 +10,35 @@
     <style>
         :root {
             --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #06b6d4;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
+            --secondary-color: #a855f7;
+            --accent-color: #ec4899;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-primary: #ffffff;
+            --text-secondary: #e2e8f0;
             --text-muted: #94a3b8;
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: rgba(30, 41, 59, 0.6);
+            --text-accent: #60a5fa;
+            --bg-primary: #0f0f23;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #16213e;
+            --bg-card: rgba(26, 26, 46, 0.8);
+            --bg-glass: rgba(255, 255, 255, 0.05);
             --border-color: rgba(148, 163, 184, 0.1);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --border-accent: rgba(99, 102, 241, 0.3);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
             --radius-sm: 0.375rem;
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-accent: linear-gradient(135deg, var(--accent-color), var(--warning-color));
+            --gradient-success: linear-gradient(135deg, var(--success-color), var(--accent-color));
         }
 
         * {
@@ -65,9 +77,23 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+        
+        .navbar.scrolled {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem 2rem;
+        }
+        
+        .navbar.hidden {
+            transform: translateY(-100%);
         }
 
         .nav-container {
@@ -105,11 +131,155 @@
             color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
         
         .nav-links a:hover {
             color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a:hover::before {
+            width: 80%;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: scale(1.05);
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .mobile-nav-links a:hover::before {
+            left: 0;
+        }
+
+        .mobile-nav-links a:hover {
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
         }
 
         /* Container */
@@ -128,11 +298,47 @@
             text-align: center;
             position: relative;
             padding-top: 80px;
+            background: linear-gradient(135deg, 
+                rgba(99, 102, 241, 0.1) 0%, 
+                rgba(168, 85, 247, 0.1) 25%,
+                rgba(236, 72, 153, 0.1) 50%,
+                rgba(251, 146, 60, 0.1) 75%,
+                rgba(34, 197, 94, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.2) 0%, transparent 50%);
+            animation: floatingOrbs 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes floatingOrbs {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
 
         .hero-content {
             max-width: 800px;
             animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-image {
@@ -162,10 +368,24 @@
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            background: linear-gradient(135deg, 
+                #6366f1 0%, 
+                #a855f7 25%, 
+                #ec4899 50%, 
+                #f59e0b 75%, 
+                #10b981 100%);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: textGradient 4s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes textGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero-subtitle {
@@ -377,7 +597,13 @@
             place-items: center;
             overflow: hidden;
             border-radius: 20px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        
+        .card:hover::after {
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
         .card::before {
@@ -528,7 +754,11 @@
         }
 
         .card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-10px) scale(1.05) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+                        0 0 0 1px rgba(255, 255, 255, 0.1),
+                        0 0 30px rgba(99, 102, 241, 0.4);
+            filter: brightness(1.1);
         }
 
         .card:hover::before {
@@ -599,6 +829,57 @@
             text-align: center;
             padding: 0 1rem;
             font-size: 0.9rem;
+        }
+            
+        
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .stagger-animation {
+            transition-delay: calc(var(--stagger-delay, 0) * 0.1s);
         }
 
         /* Skills */
@@ -692,6 +973,8 @@
             color: var(--primary-color);
         }
 
+
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -719,6 +1002,10 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
             }
 
             .container {
@@ -832,6 +1119,31 @@
             box-shadow: 0 0 var(--size-shadow) #000;
         }
 
+        /* Mouse Trail Effect */
+        .trail-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.6) 50%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
+            animation: trailPulse 1s ease-in-out infinite alternate;
+        }
+
+
+
+
+        @keyframes trailPulse {
+            0% {
+                box-shadow: 0 0 5px rgba(99, 102, 241, 0.3), 0 0 10px rgba(139, 92, 246, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(99, 102, 241, 0.7), 0 0 25px rgba(139, 92, 246, 0.5);
+            }
+        }
+
         /* Rain Animation */
         #rain-container {
             position: fixed;
@@ -871,6 +1183,264 @@
             }
         }
 
+        /* Chatbot Styles */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            animation: chatbotSlideIn 0.3s ease-out;
+        }
+
+        .chatbot-container.active {
+            display: flex;
+        }
+
+        @keyframes chatbotSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 3px;
+        }
+
+        .bot-message, .user-message {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        .bot-message .message-content {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            color: #333;
+            border-bottom-left-radius: 6px;
+        }
+
+        .user-message .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 6px;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-input-container {
+            padding: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        #chatbot-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        #chatbot-input:focus {
+            border-color: #667eea;
+            background: white;
+        }
+
+        #chatbot-send {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #chatbot-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            border-radius: 18px;
+            border-bottom-left-radius: 6px;
+            max-width: 80%;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        .typing-dot:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes typingAnimation {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                width: calc(100vw - 40px);
+                height: 70vh;
+                bottom: 90px;
+                right: 20px;
+                left: 20px;
+            }
+            
+            .chatbot-toggle {
+                bottom: 15px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+        }
+
 
     </style>
 </head>
@@ -888,23 +1458,38 @@
             <ul class="nav-links">
                 <li><a href="#home">Ana Sayfa</a></li>
                 <li><a href="#about">Hakkımda</a></li>
-                <li><a href="#services">Hizmetler</a></li>
                 <li><a href="#projects">Projeler</a></li>
                 <li><a href="#contact">İletişim</a></li>
             </ul>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close">×</button>
+        <ul class="mobile-nav-links">
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#projects">Projeler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="profile-image">
+            <div class="hero-content fade-in">
+                <div class="profile-image scale-in">
                     <img src="resimler/poto.jpg" alt="Seloware Profil">
                 </div>
-                <h1 class="hero-title">Seloware</h1>
-                <p class="hero-subtitle">Mobil App & Web Developer</p>
-                <p class="hero-description">
+                <h1 class="hero-title slide-in-left">Seloware</h1>
+                <p class="hero-subtitle slide-in-right">Mobil App & Front-End Developer</p>
+                <p class="hero-description fade-in">
                     Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum. 
                     Projelerinizi hayata geçirmek için buradayım.
                 </p>
@@ -957,7 +1542,7 @@
                     Teknoloji tutkunu bir geliştirici olarak, yaratıcı çözümler üretmeyi seviyorum.
                 </p>
             </div>
-            <div class="card-grid">
+            <div class="card-grid stagger-animation">
                 <div class="card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-code"></i>
@@ -992,43 +1577,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Hizmetlerim</h2>
-                <p class="section-subtitle">
-                    Size sunabileceğim profesyonel hizmetler.
-                </p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="skill-name">Mobil Uygulama</div>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="skill-name">Web Sitesi</div>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div class="skill-name">Logo Tasarımı</div>
-                </div>
-                <div class="skill-item fade-in">
-                    <div class="skill-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <div class="skill-name">UI/UX Tasarım</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section">
@@ -1039,7 +1587,7 @@
                     Geliştirdiğim bazı projeler ve çalışmalar.
                 </p>
             </div>
-            <div class="card-grid">
+            <div class="card-grid stagger-animation">
                 <div class="card fade-in">
                     <div class="card-icon">
                         <i class="fas fa-mobile-alt"></i>
@@ -1074,6 +1622,8 @@
         </div>
     </section>
 
+
+
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
@@ -1083,7 +1633,7 @@
                     Projeleriniz için benimle iletişime geçin.
                 </p>
             </div>
-            <div class="contact-grid">
+            <div class="contact-grid stagger-animation">
                 <div class="contact-item fade-in">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
@@ -1151,12 +1701,23 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    entry.target.classList.add('animate');
+                    
+                    // Add stagger effect for children
+                    if (entry.target.classList.contains('stagger-animation')) {
+                        const children = entry.target.children;
+                        Array.from(children).forEach((child, index) => {
+                            setTimeout(() => {
+                                child.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
                 }
             });
         }, observerOptions);
 
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .stagger-animation').forEach(el => {
             observer.observe(el);
         });
 
@@ -1182,17 +1743,353 @@
         // Create rain letters
         setInterval(createRain, 800);
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
+        // Mouse Trail Effect
+        const trail = [];
+        const trailLength = 20;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Create trail particles
+        for (let i = 0; i < trailLength; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'trail-particle';
+            document.body.appendChild(particle);
+            trail.push({
+                element: particle,
+                x: 0,
+                y: 0,
+                targetX: 0,
+                targetY: 0
+            });
+        }
+
+        // Track mouse movement
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Animate trail particles
+        function animateTrail() {
+            trail.forEach((particle, index) => {
+                if (index === 0) {
+                    particle.targetX = mouseX;
+                    particle.targetY = mouseY;
+                } else {
+                    particle.targetX = trail[index - 1].x;
+                    particle.targetY = trail[index - 1].y;
+                }
+
+                // Smooth movement
+                particle.x += (particle.targetX - particle.x) * 0.3;
+                particle.y += (particle.targetY - particle.y) * 0.3;
+
+                // Update position
+                particle.element.style.left = particle.x + 'px';
+                particle.element.style.top = particle.y + 'px';
+
+                // Scale and opacity based on position in trail
+                const scale = (trailLength - index) / trailLength;
+                const opacity = scale * 0.8;
+                particle.element.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                particle.element.style.opacity = opacity;
+            });
+
+            requestAnimationFrame(animateTrail);
+        }
+
+        // Start animation
+        animateTrail();
+
+        // Scroll animations - use existing observer
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .stagger-animation').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced Navbar scroll effects
+        let lastScrollY = 0;
+        let ticking = false;
+        
+        function updateNavbar() {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+            const currentScrollY = window.scrollY;
+            
+            // Add scrolled class for styling
+            if (currentScrollY > 100) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Hide/show navbar based on scroll direction
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                navbar.classList.add('hidden');
+            } else {
+                navbar.classList.remove('hidden');
+            }
+            
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+
+        // Chatbot Implementation
+        class Chatbot {
+            constructor() {
+                this.container = document.getElementById('chatbot-container');
+                this.toggle = document.getElementById('chatbot-toggle');
+                this.closeBtn = document.getElementById('chatbot-close');
+                this.input = document.getElementById('chatbot-input');
+                this.sendBtn = document.getElementById('chatbot-send');
+                this.messagesContainer = document.getElementById('chatbot-messages');
+                this.isOpen = false;
+                
+                this.responses = {
+                    'merhaba': ['Merhaba! Size nasıl yardımcı olabilirim? 😊', 'Selam! Bugün nasılsınız?', 'Merhaba! Hoş geldiniz! 👋'],
+                    'selam': ['Selam! Size nasıl yardımcı olabilirim? 😊', 'Merhaba! Bugün nasılsınız?', 'Selam! Hoş geldiniz! 👋'],
+                    'nasılsın': ['Ben bir chatbot olarak her zaman iyiyim! 🤖 Siz nasılsınız?', 'Harika! Size nasıl yardımcı olabilirim?', 'İyiyim, teşekkürler! Siz nasılsınız?'],
+                    'kim': ['Ben Seloware\'nin web sitesindeki yardımcı chatbotum! 🤖', 'Seloware\'nin dijital asistanıyım!', 'Ben bu web sitesinin chatbotuyum!'],
+                    'ne yapıyorsun': ['Size yardımcı olmaya çalışıyorum! 😊', 'Web sitesi hakkında sorularınızı yanıtlıyorum!', 'Burada sizinle sohbet ediyorum!'],
+                    'projeler': ['Seloware\'nin harika projeleri var! Projelerim bölümünü inceleyebilirsiniz. 🚀', 'Web sitesinde birçok ilginç proje bulabilirsiniz!', 'Projeler bölümünde çeşitli çalışmalar var!'],
+
+                    'iletişim': ['İletişim bölümünden Seloware ile iletişime geçebilirsiniz! 📧', 'Sosyal medya hesaplarından takip edebilirsiniz!', 'İletişim bilgileri sayfanın alt kısmında!'],
+                    'hakkında': ['Seloware yetenekli bir Front-End Developer! 👨‍💻', 'Hakkımda bölümünde daha fazla bilgi bulabilirsiniz!', 'Seloware mobil app ve web geliştirme konusunda uzman!'],
+                    'teşekkür': ['Rica ederim! 😊', 'Ne demek! Yardımcı olabildiysem ne mutlu bana!', 'Her zaman! 🤗'],
+                    'görüşürüz': ['Görüşürüz! İyi günler! 👋', 'Hoşça kalın! 😊', 'Tekrar bekleriz! 🤗'],
+                    'yardım': ['Size nasıl yardımcı olabilirim? Projeler, iletişim hakkında sorabilirsiniz! 🤔', 'Hangi konuda yardıma ihtiyacınız var?', 'Web sitesi hakkında her şeyi sorabilirsiniz!'],
+                    'teknoloji': ['HTML, CSS, JavaScript, React ve daha fazlası! 💻', 'Modern web teknolojileri kullanılıyor!', 'Front-end geliştirme teknolojileri!'],
+                    'default': ['Anlamadım, başka bir şekilde sorabilir misiniz? 🤔', 'Bu konuda emin değilim. Başka nasıl yardımcı olabilirim?', 'Hmm, bu soruyu anlayamadım. Farklı bir şey sorabilirsiniz!']
+                };
+                
+                this.initializeEvents();
+            }
+            
+            initializeEvents() {
+                this.toggle.addEventListener('click', () => this.toggleChat());
+                this.closeBtn.addEventListener('click', () => this.closeChat());
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+            }
+            
+            toggleChat() {
+                if (this.isOpen) {
+                    this.closeChat();
+                } else {
+                    this.openChat();
+                }
+            }
+            
+            openChat() {
+                this.container.classList.add('active');
+                this.isOpen = true;
+                this.input.focus();
+            }
+            
+            closeChat() {
+                this.container.classList.remove('active');
+                this.isOpen = false;
+            }
+            
+            async sendMessage() {
+                const message = this.input.value.trim();
+                if (message === '') return;
+                
+                this.addUserMessage(message);
+                this.input.value = '';
+                
+                // Show typing indicator
+                this.showTypingIndicator();
+                
+                try {
+                    // Try AI response first
+                    const aiResponse = await this.getAIResponse(message);
+                    this.hideTypingIndicator();
+                    this.addBotMessage(aiResponse);
+                } catch (error) {
+                    // Fallback to predefined responses
+                    console.log('AI yanıt alınamadı, önceden tanımlanmış yanıtlar kullanılıyor:', error);
+                    setTimeout(() => {
+                        this.hideTypingIndicator();
+                        this.addBotMessage(this.generateResponse(message));
+                    }, 1000 + Math.random() * 1000);
+                }
+            }
+            
+            addUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'user-message';
+                messageDiv.innerHTML = `<div class="message-content">${this.escapeHtml(message)}</div>`;
+                this.messagesContainer.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+            
+            addBotMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'bot-message';
+                messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+                this.messagesContainer.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+            
+            showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'bot-message typing-message';
+                typingDiv.innerHTML = `
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                this.messagesContainer.appendChild(typingDiv);
+                this.scrollToBottom();
+            }
+            
+            hideTypingIndicator() {
+                const typingMessage = this.messagesContainer.querySelector('.typing-message');
+                if (typingMessage) {
+                    typingMessage.remove();
+                }
+            }
+            
+            async getAIResponse(message) {
+                // AI yanıt almaya çalış
+                const response = await puter.ai.chat(message, { model: "gpt-4o" });
+                return response;
+            }
+            
+            generateResponse(message) {
+                const lowerMessage = message.toLowerCase().trim();
+                
+                // Check for keywords
+                for (const [keyword, responses] of Object.entries(this.responses)) {
+                    if (keyword !== 'default' && lowerMessage.includes(keyword)) {
+                        return responses[Math.floor(Math.random() * responses.length)];
+                    }
+                }
+                
+                // Default response
+                return this.responses.default[Math.floor(Math.random() * this.responses.default.length)];
+            }
+            
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            scrollToBottom() {
+                setTimeout(() => {
+                    this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+                }, 100);
+            }
+        }
+        
+        // Initialize Chatbot when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbot = new Chatbot();
+        });
+
+        // Mobile Menu Functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuToggle.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
             }
         });
 
 
     </script>
+
+    <!-- Puter.js AI API -->
+    <script src="https://js.puter.com/v2/"></script>
+
+    <!-- Chatbot -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>💬 Asistan</h3>
+            <button id="chatbot-close" class="chatbot-close">×</button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages">
+            <div class="bot-message">
+                <div class="message-content">
+                    Merhaba! Size nasıl yardımcı olabilirim? 😊
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Mesajınızı yazın..." maxlength="200">
+            <button id="chatbot-send">📤</button>
+        </div>
+    </div>
+    
+    <button id="chatbot-toggle" class="chatbot-toggle">
+        💬
+    </button>
+
 </body>
 </html>
