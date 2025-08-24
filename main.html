@@ -112,14 +112,54 @@
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
         }
         
-        .logo-text:hover {
-            color: var(--primary-color);
+        .logo-text .wave-letter {
+            display: inline-block;
+            color: white;
+            animation: waveEffect 2s ease-in-out infinite;
+            position: relative;
         }
+        
+        .logo-text .wave-letter:nth-child(1) { animation-delay: 0s; }
+        .logo-text .wave-letter:nth-child(2) { animation-delay: 0.1s; }
+        .logo-text .wave-letter:nth-child(3) { animation-delay: 0.2s; }
+        .logo-text .wave-letter:nth-child(4) { animation-delay: 0.3s; }
+        .logo-text .wave-letter:nth-child(5) { animation-delay: 0.4s; }
+        .logo-text .wave-letter:nth-child(6) { animation-delay: 0.5s; }
+        .logo-text .wave-letter:nth-child(7) { animation-delay: 0.6s; }
+        .logo-text .wave-letter:nth-child(8) { animation-delay: 0.7s; }
+        
+
+        
+        @keyframes waveEffect {
+            0% {
+                transform: translateY(0px) rotateZ(0deg);
+                background-position: 0% 50%;
+            }
+            25% {
+                transform: translateY(-8px) rotateZ(5deg);
+                background-position: 25% 50%;
+            }
+            50% {
+                transform: translateY(0px) rotateZ(0deg);
+                background-position: 50% 50%;
+            }
+            75% {
+                transform: translateY(8px) rotateZ(-5deg);
+                background-position: 75% 50%;
+            }
+            100% {
+                transform: translateY(0px) rotateZ(0deg);
+                background-position: 100% 50%;
+            }
+        }
+        
+
 
         .nav-links {
             display: flex;
@@ -1453,7 +1493,16 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-container">
-            <div class="logo-text">Seloware</div>
+            <div class="logo-text">
+                    <span class="wave-letter">S</span>
+                    <span class="wave-letter">e</span>
+                    <span class="wave-letter">l</span>
+                    <span class="wave-letter">o</span>
+                    <span class="wave-letter">w</span>
+                    <span class="wave-letter">a</span>
+                    <span class="wave-letter">r</span>
+                    <span class="wave-letter">e</span>
+                </div>
         </div>
             <ul class="nav-links">
                 <li><a href="#home">Ana Sayfa</a></li>
