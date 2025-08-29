@@ -1,0 +1,37 @@
+{
+  "name": "Seloware Portfolio",
+  "short_name": "Seloware",
+  "description": "Seloware - Modern Portfolio. Mobil App & Front-End Developer. Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "tr",
+  "dir": "ltr",
+  "categories": ["portfolio", "developer", "design"],
+  "icons": [
+    {
+      "src": "resimler/sy.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "resimler/sy.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "resimler/poto.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Seloware Portfolio Ana Sayfa"
+    }
+  ]
+}

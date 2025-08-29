@@ -3,10 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seloware - Modern Portfolio</title>
-    <link rel="icon" type="image/png" href="resimler/sy.png">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    
+    <!-- SEO Meta Tags -->
+    <title>Seloware - Mobil App & Front-End Developer | Modern Portfolio</title>
+    <meta name="description" content="Seloware - Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiren profesyonel developer. React, JavaScript, UI/UX tasarım hizmetleri.">
+    <meta name="keywords" content="seloware, mobil uygulama geliştirme, front-end developer, web tasarım, logo tasarım, react developer, javascript, ui ux tasarım, portfolio">
+    <meta name="author" content="Selahattin Yaralı - Seloware">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Turkish">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Seloware - Mobil App & Front-End Developer">
+    <meta property="og:description" content="Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum. Projelerinizi hayata geçirmek için buradayım.">
+    <meta property="og:image" content="https://seloware.com/resimler/poto.jpg">
+    <meta property="og:url" content="https://seloware.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Seloware Portfolio">
+    <meta property="og:locale" content="tr_TR">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Seloware - Mobil App & Front-End Developer">
+    <meta name="twitter:description" content="Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum.">
+    <meta name="twitter:image" content="https://seloware.com/resimler/poto.jpg">
+    <meta name="twitter:creator" content="@seloware">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://seloware.com/">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="resimler/sy.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="resimler/sy.png">
+    <link rel="apple-touch-icon" href="resimler/sy.png">
+    <link rel="shortcut icon" href="resimler/sy.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Selahattin Yaralı",
+      "alternateName": "Seloware",
+      "description": "Mobil App & Front-End Developer",
+      "url": "https://seloware.com",
+      "image": "https://seloware.com/resimler/poto.jpg",
+      "sameAs": [
+        "https://github.com/seloware",
+        "https://www.linkedin.com/in/selahattin-yaralı-a6b719258",
+        "https://www.instagram.com/seloyrl",
+        "https://bionluk.com/seloware"
+      ],
+      "jobTitle": "Front-End Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "knowsAbout": [
+        "JavaScript",
+        "React",
+        "Mobile App Development",
+        "Web Development",
+        "UI/UX Design",
+        "Logo Design"
+      ]
+    }
+    </script>
     <style>
         :root {
             --primary-color: #6366f1;
@@ -101,64 +181,11 @@
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
-        .logo-container {
-            display: inline-block;
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-        }
-        
-        .logo-text .wave-letter {
-            display: inline-block;
-            color: white;
-            animation: waveEffect 2s ease-in-out infinite;
-            position: relative;
-        }
-        
-        .logo-text .wave-letter:nth-child(1) { animation-delay: 0s; }
-        .logo-text .wave-letter:nth-child(2) { animation-delay: 0.1s; }
-        .logo-text .wave-letter:nth-child(3) { animation-delay: 0.2s; }
-        .logo-text .wave-letter:nth-child(4) { animation-delay: 0.3s; }
-        .logo-text .wave-letter:nth-child(5) { animation-delay: 0.4s; }
-        .logo-text .wave-letter:nth-child(6) { animation-delay: 0.5s; }
-        .logo-text .wave-letter:nth-child(7) { animation-delay: 0.6s; }
-        .logo-text .wave-letter:nth-child(8) { animation-delay: 0.7s; }
-        
 
-        
-        @keyframes waveEffect {
-            0% {
-                transform: translateY(0px) rotateZ(0deg);
-                background-position: 0% 50%;
-            }
-            25% {
-                transform: translateY(-8px) rotateZ(5deg);
-                background-position: 25% 50%;
-            }
-            50% {
-                transform: translateY(0px) rotateZ(0deg);
-                background-position: 50% 50%;
-            }
-            75% {
-                transform: translateY(8px) rotateZ(-5deg);
-                background-position: 75% 50%;
-            }
-            100% {
-                transform: translateY(0px) rotateZ(0deg);
-                background-position: 100% 50%;
-            }
-        }
-        
 
 
         .nav-links {
@@ -1223,264 +1250,163 @@
             }
         }
 
-        /* Chatbot Styles */
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+
+
+
+        /* Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-animate.slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .scroll-animate.slide-in-left.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-animate.slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .scroll-animate.slide-in-right.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-animate.scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .scroll-animate.scale-in.animate-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .scroll-animate.rotate-in {
+            opacity: 0;
+            transform: rotate(-10deg) scale(0.9);
+        }
+
+        .scroll-animate.rotate-in.animate-in {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Staggered Animation Delays */
+        .scroll-animate:nth-child(1) { transition-delay: 0.1s; }
+        .scroll-animate:nth-child(2) { transition-delay: 0.2s; }
+        .scroll-animate:nth-child(3) { transition-delay: 0.3s; }
+        .scroll-animate:nth-child(4) { transition-delay: 0.4s; }
+        .scroll-animate:nth-child(5) { transition-delay: 0.5s; }
+        .scroll-animate:nth-child(6) { transition-delay: 0.6s; }
+        
+        /* Section Transition Animations */
+        .section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.8s ease-in-out;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .section.section-entering::before {
+            left: 100%;
+        }
+        
+        /* Enhanced section animations */
+        .section-content {
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .section.section-entering .section-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        
+        /* Navigation link active state animation */
+        .nav-links a {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transform: translateX(-50%);
         }
-
-        .chatbot-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
-
-        .chatbot-container {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: none;
-            flex-direction: column;
-            z-index: 999;
-            animation: chatbotSlideIn 0.3s ease-out;
-        }
-
-        .chatbot-container.active {
-            display: flex;
-        }
-
-        @keyframes chatbotSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .chatbot-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 20px 20px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-header h3 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-        }
-
-        .chatbot-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .chatbot-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chatbot-messages::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 3px;
-        }
-
-        .chatbot-messages::-webkit-scrollbar-thumb {
-            background: rgba(102, 126, 234, 0.5);
-            border-radius: 3px;
-        }
-
-        .bot-message, .user-message {
-            display: flex;
-            margin-bottom: 10px;
-        }
-
-        .bot-message {
-            justify-content: flex-start;
-        }
-
-        .user-message {
-            justify-content: flex-end;
-        }
-
-        .message-content {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.4;
-            animation: messageSlideIn 0.3s ease-out;
-        }
-
-        .bot-message .message-content {
-            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-            color: #333;
-            border-bottom-left-radius: 6px;
-        }
-
-        .user-message .message-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-bottom-right-radius: 6px;
-        }
-
-        @keyframes messageSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .chatbot-input-container {
-            padding: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 10px;
-        }
-
-        #chatbot-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 25px;
-            outline: none;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-        }
-
-        #chatbot-input:focus {
-            border-color: #667eea;
-            background: white;
-        }
-
-        #chatbot-send {
-            width: 45px;
-            height: 45px;
-            border: none;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #chatbot-send:hover {
+        
+        .nav-links a.navigating {
             transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            color: var(--primary-color);
         }
-
-        .typing-indicator {
+        
+        /* Section fade transition */
+        .section-fade-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            z-index: 9999;
             display: flex;
             align-items: center;
-            gap: 4px;
-            padding: 12px 16px;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-            border-radius: 18px;
-            border-bottom-left-radius: 6px;
-            max-width: 80%;
+            justify-content: center;
         }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #999;
-            animation: typingAnimation 1.4s infinite ease-in-out;
+        
+        .section-fade-transition.active {
+            opacity: 0.9;
+            visibility: visible;
         }
-
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        .typing-dot:nth-child(3) { animation-delay: 0s; }
-
-        @keyframes typingAnimation {
-            0%, 80%, 100% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-            40% {
-                transform: scale(1);
-                opacity: 1;
-            }
+        
+        .section-fade-transition .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            animation: pulse 1s infinite;
         }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .chatbot-container {
-                width: calc(100vw - 40px);
-                height: 70vh;
-                bottom: 90px;
-                right: 20px;
-                left: 20px;
-            }
-            
-            .chatbot-toggle {
-                bottom: 15px;
-                right: 15px;
-                width: 55px;
-                height: 55px;
-                font-size: 22px;
-            }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-
 
     </style>
 </head>
@@ -1488,22 +1414,15 @@
 
     <div class="glass-bg"></div>
     <div id="rain-container"></div>
+    
+    <!-- Section Transition Overlay -->
+    <div class="section-fade-transition" id="section-transition">
+        <div class="loading-text">Yükleniyor...</div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo-container">
-            <div class="logo-text">
-                    <span class="wave-letter">S</span>
-                    <span class="wave-letter">e</span>
-                    <span class="wave-letter">l</span>
-                    <span class="wave-letter">o</span>
-                    <span class="wave-letter">w</span>
-                    <span class="wave-letter">a</span>
-                    <span class="wave-letter">r</span>
-                    <span class="wave-letter">e</span>
-                </div>
-        </div>
             <ul class="nav-links">
                 <li><a href="#home">Ana Sayfa</a></li>
                 <li><a href="#about">Hakkımda</a></li>
@@ -1532,13 +1451,13 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <div class="hero-content fade-in">
-                <div class="profile-image scale-in">
+            <div class="hero-content scroll-animate">
+                <div class="profile-image scroll-animate scale-in">
                     <img src="resimler/poto.jpg" alt="Seloware Profil">
                 </div>
-                <h1 class="hero-title slide-in-left">Seloware</h1>
-                <p class="hero-subtitle slide-in-right">Mobil App & Front-End Developer</p>
-                <p class="hero-description fade-in">
+                <h1 class="hero-title scroll-animate slide-in-left">Seloware</h1>
+                <p class="hero-subtitle scroll-animate slide-in-right">Mobil App & Front-End Developer</p>
+                <p class="hero-description scroll-animate">
                     Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum. 
                     Projelerinizi hayata geçirmek için buradayım.
                 </p>
@@ -1585,14 +1504,14 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header scroll-animate">
                 <h2 class="section-title">Hakkımda</h2>
                 <p class="section-subtitle">
                     Teknoloji tutkunu bir geliştirici olarak, yaratıcı çözümler üretmeyi seviyorum.
                 </p>
             </div>
             <div class="card-grid stagger-animation">
-                <div class="card fade-in">
+                <div class="card scroll-animate">
                     <div class="card-icon">
                         <i class="fas fa-code"></i>
                     </div>
@@ -1602,7 +1521,7 @@
                         Kullanıcı deneyimini ön planda tutarak projeler üretiyorum.
                     </p>
                 </div>
-                <div class="card fade-in">
+                <div class="card scroll-animate">
                     <div class="card-icon">
                         <i class="fas fa-palette"></i>
                     </div>
@@ -1612,7 +1531,7 @@
                         özgün tasarımlar oluşturuyorum.
                     </p>
                 </div>
-                <div class="card fade-in">
+                <div class="card scroll-animate">
                     <div class="card-icon">
                         <i class="fas fa-lightbulb"></i>
                     </div>
@@ -1630,14 +1549,14 @@
     <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Projelerim</h2>
+            <div class="section-header scroll-animate">
+                <h2 class="section-title">Projelerim <a href="https://github.com/seloware" target="_blank" style="color: var(--accent-color); text-decoration: none; margin-left: 10px; font-size: 0.8em; transition: all 0.3s ease;" onmouseover="this.style.color='var(--secondary-color)'" onmouseout="this.style.color='var(--accent-color)'"><i class="fab fa-github"></i></a></h2>
                 <p class="section-subtitle">
                     Geliştirdiğim bazı projeler ve çalışmalar.
                 </p>
             </div>
             <div class="card-grid stagger-animation">
-                <div class="card fade-in">
+                <div class="card scroll-animate">
                     <div class="card-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
@@ -1647,7 +1566,7 @@
                         Responsive tasarım ve smooth animasyonlar içeriyor.
                     </p>
                 </div>
-                <div class="card fade-in">
+                <div class="card scroll-animate">
                     <div class="card-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -1657,7 +1576,7 @@
                         kullanılarak geliştirildi.
                     </p>
                 </div>
-                <div class="card fade-in">
+                <div class="card scroll-animate">
                     <div class="card-icon">
                         <i class="fas fa-tasks"></i>
                     </div>
@@ -1676,20 +1595,20 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header scroll-animate">
                 <h2 class="section-title">İletişim</h2>
                 <p class="section-subtitle">
                     Projeleriniz için benimle iletişime geçin.
                 </p>
             </div>
             <div class="contact-grid stagger-animation">
-                <div class="contact-item fade-in">
+                <div class="contact-item scroll-animate">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="contact-info">
                         <h4>E-posta</h4>
-                        <p><a href="mailto:selahattinyarali12@gmail.com">selahattinyarali12@gmail.com</a></p>
+                        <p><a href="mailto:selahattinyarali17@gmail.com">selahattinyarali17@gmail.com</a></p>
                     </div>
                 </div>
 
@@ -1891,181 +1810,175 @@
         
         window.addEventListener('scroll', requestTick);
         
-        // Smooth scroll for navigation links
-        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        // Enhanced Smooth Scroll with Custom Animation
+        function smoothScrollTo(target, duration = 1200) {
+            const targetPosition = target.offsetTop - 80; // Navbar offset
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+            
+            // Custom easing function (easeInOutCubic)
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+            
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = easeInOutCubic(progress);
+                
+                window.scrollTo(0, startPosition + distance * ease);
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    // Add a subtle bounce effect at the end
+                    target.style.transform = 'scale(1.02)';
+                    target.style.transition = 'transform 0.3s ease';
+                    setTimeout(() => {
+                        target.style.transform = 'scale(1)';
+                        setTimeout(() => {
+                            target.style.transform = '';
+                            target.style.transition = '';
+                        }, 300);
+                    }, 100);
+                }
+            }
+            
+            requestAnimationFrame(animation);
+        }
+        
+        // Enhanced Section Navigation with Smooth Transitions
+        function navigateToSection(target, clickedLink) {
+            const sectionTransition = document.getElementById('section-transition');
+            const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+            
+            // Remove active class from all links
+            allNavLinks.forEach(link => {
+                link.classList.remove('active', 'navigating');
+            });
+            
+            // Add navigating class to clicked link
+            clickedLink.classList.add('navigating');
+            
+            // Show transition overlay
+            sectionTransition.classList.add('active');
+            
+            // Add section entering animation
+            const currentSection = target.closest('.section') || target;
+            currentSection.classList.add('section-entering');
+            
+            setTimeout(() => {
+                // Hide transition overlay
+                sectionTransition.classList.remove('active');
+                
+                // Start smooth scroll
+                smoothScrollTo(target);
+                
+                // Add active class to clicked link
+                clickedLink.classList.remove('navigating');
+                clickedLink.classList.add('active');
+                
+                // Remove section entering class after animation
+                setTimeout(() => {
+                    currentSection.classList.remove('section-entering');
+                }, 800);
+            }, 500);
+        }
+        
+        // Apply enhanced smooth scroll to navigation links
+        document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-links a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    navigateToSection(target, this);
                 }
             });
         });
-
-
-
-        // Chatbot Implementation
-        class Chatbot {
-            constructor() {
-                this.container = document.getElementById('chatbot-container');
-                this.toggle = document.getElementById('chatbot-toggle');
-                this.closeBtn = document.getElementById('chatbot-close');
-                this.input = document.getElementById('chatbot-input');
-                this.sendBtn = document.getElementById('chatbot-send');
-                this.messagesContainer = document.getElementById('chatbot-messages');
-                this.isOpen = false;
-                
-                this.responses = {
-                    'merhaba': ['Merhaba! Size nasıl yardımcı olabilirim? 😊', 'Selam! Bugün nasılsınız?', 'Merhaba! Hoş geldiniz! 👋'],
-                    'selam': ['Selam! Size nasıl yardımcı olabilirim? 😊', 'Merhaba! Bugün nasılsınız?', 'Selam! Hoş geldiniz! 👋'],
-                    'nasılsın': ['Ben bir chatbot olarak her zaman iyiyim! 🤖 Siz nasılsınız?', 'Harika! Size nasıl yardımcı olabilirim?', 'İyiyim, teşekkürler! Siz nasılsınız?'],
-                    'kim': ['Ben Seloware\'nin web sitesindeki yardımcı chatbotum! 🤖', 'Seloware\'nin dijital asistanıyım!', 'Ben bu web sitesinin chatbotuyum!'],
-                    'ne yapıyorsun': ['Size yardımcı olmaya çalışıyorum! 😊', 'Web sitesi hakkında sorularınızı yanıtlıyorum!', 'Burada sizinle sohbet ediyorum!'],
-                    'projeler': ['Seloware\'nin harika projeleri var! Projelerim bölümünü inceleyebilirsiniz. 🚀', 'Web sitesinde birçok ilginç proje bulabilirsiniz!', 'Projeler bölümünde çeşitli çalışmalar var!'],
-
-                    'iletişim': ['İletişim bölümünden Seloware ile iletişime geçebilirsiniz! 📧', 'Sosyal medya hesaplarından takip edebilirsiniz!', 'İletişim bilgileri sayfanın alt kısmında!'],
-                    'hakkında': ['Seloware yetenekli bir Front-End Developer! 👨‍💻', 'Hakkımda bölümünde daha fazla bilgi bulabilirsiniz!', 'Seloware mobil app ve web geliştirme konusunda uzman!'],
-                    'teşekkür': ['Rica ederim! 😊', 'Ne demek! Yardımcı olabildiysem ne mutlu bana!', 'Her zaman! 🤗'],
-                    'görüşürüz': ['Görüşürüz! İyi günler! 👋', 'Hoşça kalın! 😊', 'Tekrar bekleriz! 🤗'],
-                    'yardım': ['Size nasıl yardımcı olabilirim? Projeler, iletişim hakkında sorabilirsiniz! 🤔', 'Hangi konuda yardıma ihtiyacınız var?', 'Web sitesi hakkında her şeyi sorabilirsiniz!'],
-                    'teknoloji': ['HTML, CSS, JavaScript, React ve daha fazlası! 💻', 'Modern web teknolojileri kullanılıyor!', 'Front-end geliştirme teknolojileri!'],
-                    'default': ['Anlamadım, başka bir şekilde sorabilir misiniz? 🤔', 'Bu konuda emin değilim. Başka nasıl yardımcı olabilirim?', 'Hmm, bu soruyu anlayamadım. Farklı bir şey sorabilirsiniz!']
-                };
-                
-                this.initializeEvents();
-            }
+        
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-links a[href^="#"]');
             
-            initializeEvents() {
-                this.toggle.addEventListener('click', () => this.toggleChat());
-                this.closeBtn.addEventListener('click', () => this.closeChat());
-                this.sendBtn.addEventListener('click', () => this.sendMessage());
-                this.input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        this.sendMessage();
-                    }
-                });
-            }
+            let currentSection = '';
             
-            toggleChat() {
-                if (this.isOpen) {
-                    this.closeChat();
-                } else {
-                    this.openChat();
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
                 }
-            }
+            });
             
-            openChat() {
-                this.container.classList.add('active');
-                this.isOpen = true;
-                this.input.focus();
-            }
-            
-            closeChat() {
-                this.container.classList.remove('active');
-                this.isOpen = false;
-            }
-            
-            async sendMessage() {
-                const message = this.input.value.trim();
-                if (message === '') return;
-                
-                this.addUserMessage(message);
-                this.input.value = '';
-                
-                // Show typing indicator
-                this.showTypingIndicator();
-                
-                try {
-                    // Try AI response first
-                    const aiResponse = await this.getAIResponse(message);
-                    this.hideTypingIndicator();
-                    this.addBotMessage(aiResponse);
-                } catch (error) {
-                    // Fallback to predefined responses
-                    console.log('AI yanıt alınamadı, önceden tanımlanmış yanıtlar kullanılıyor:', error);
-                    setTimeout(() => {
-                        this.hideTypingIndicator();
-                        this.addBotMessage(this.generateResponse(message));
-                    }, 1000 + Math.random() * 1000);
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
                 }
-            }
-            
-            addUserMessage(message) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'user-message';
-                messageDiv.innerHTML = `<div class="message-content">${this.escapeHtml(message)}</div>`;
-                this.messagesContainer.appendChild(messageDiv);
-                this.scrollToBottom();
-            }
-            
-            addBotMessage(message) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'bot-message';
-                messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
-                this.messagesContainer.appendChild(messageDiv);
-                this.scrollToBottom();
-            }
-            
-            showTypingIndicator() {
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'bot-message typing-message';
-                typingDiv.innerHTML = `
-                    <div class="typing-indicator">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                    </div>
-                `;
-                this.messagesContainer.appendChild(typingDiv);
-                this.scrollToBottom();
-            }
-            
-            hideTypingIndicator() {
-                const typingMessage = this.messagesContainer.querySelector('.typing-message');
-                if (typingMessage) {
-                    typingMessage.remove();
-                }
-            }
-            
-            async getAIResponse(message) {
-                // AI yanıt almaya çalış
-                const response = await puter.ai.chat(message, { model: "gpt-4o" });
-                return response;
-            }
-            
-            generateResponse(message) {
-                const lowerMessage = message.toLowerCase().trim();
-                
-                // Check for keywords
-                for (const [keyword, responses] of Object.entries(this.responses)) {
-                    if (keyword !== 'default' && lowerMessage.includes(keyword)) {
-                        return responses[Math.floor(Math.random() * responses.length)];
-                    }
-                }
-                
-                // Default response
-                return this.responses.default[Math.floor(Math.random() * this.responses.default.length)];
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-            
-            scrollToBottom() {
-                setTimeout(() => {
-                    this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
-                }, 100);
-            }
+            });
         }
         
-        // Initialize Chatbot when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatbot = new Chatbot();
+        // Listen for scroll events to update active nav link
+        window.addEventListener('scroll', updateActiveNavLink);
+        
+        // Set initial active link
+        updateActiveNavLink();
+        
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+
+        
+        // Analytics and Performance Monitoring
+        window.addEventListener('load', () => {
+            // Performance metrics
+            if ('performance' in window) {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            }
+            
+            // Lazy loading for images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
+        
+        // Error tracking
+        window.addEventListener('error', (e) => {
+            console.error('JavaScript Error:', e.error);
+        });
+        
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled Promise Rejection:', e.reason);
         });
 
         // Mobile Menu Functionality
@@ -2111,34 +2024,42 @@
             }
         });
 
+        // Scroll Animation Functionality
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Element görünür olduğunda animasyonu başlat
+                        entry.target.classList.add('animate-in');
+                    } else {
+                        // Element görünmez olduğunda animasyonu kaldır
+                        entry.target.classList.remove('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Tüm animasyonlu elementleri gözlemle
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+        
+        // Sayfa yüklendiğinde scroll animasyonlarını başlat
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+        });
+
 
     </script>
 
-    <!-- Puter.js AI API -->
-    <script src="https://js.puter.com/v2/"></script>
 
-    <!-- Chatbot -->
-    <div id="chatbot-container" class="chatbot-container">
-        <div class="chatbot-header">
-            <h3>💬 Asistan</h3>
-            <button id="chatbot-close" class="chatbot-close">×</button>
-        </div>
-        <div id="chatbot-messages" class="chatbot-messages">
-            <div class="bot-message">
-                <div class="message-content">
-                    Merhaba! Size nasıl yardımcı olabilirim? 😊
-                </div>
-            </div>
-        </div>
-        <div class="chatbot-input-container">
-            <input type="text" id="chatbot-input" placeholder="Mesajınızı yazın..." maxlength="200">
-            <button id="chatbot-send">📤</button>
-        </div>
-    </div>
-    
-    <button id="chatbot-toggle" class="chatbot-toggle">
-        💬
-    </button>
 
 </body>
 </html>
