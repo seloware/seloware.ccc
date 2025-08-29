@@ -1,5 +1,5 @@
 const CACHE_NAME = 'seloware-portfolio-v1';
-const urlsToCache = [
+const urlsToCache = [ 
   '/',
   '/main.html',
   '/manifest.json',
