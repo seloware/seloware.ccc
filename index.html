@@ -432,8 +432,8 @@
             position: absolute;
             top: 2rem;
             right: 2rem;
-            background: none;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             color: var(--text-primary);
             font-size: 2rem;
             cursor: pointer;
@@ -445,11 +445,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 1002;
+            font-weight: bold;
         }
 
         .mobile-menu-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .mobile-menu-close:active {
+            transform: rotate(90deg) scale(0.95);
         }
 
         /* Container */
@@ -509,6 +516,7 @@
             animation: fadeInUp 1s ease-out;
             position: relative;
             z-index: 1;
+            user-select: none;
         }
 
         .profile-image {
@@ -535,7 +543,7 @@
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.875rem, 5.75vw, 4.6rem);
             font-weight: 700;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, 
@@ -551,6 +559,7 @@
             animation: textGradient 4s ease-in-out infinite;
             position: relative;
             z-index: 1;
+            user-select: none;
         }
         
         @keyframes textGradient {
@@ -559,19 +568,21 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.38rem, 2.875vw, 1.725rem);
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 400;
+            user-select: none;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.265rem;
             color: var(--text-muted);
             margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            user-select: none;
         }
 
         /* Buttons */
@@ -1560,14 +1571,13 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-menu-close" id="mobile-menu-close">×</button>
         <ul class="mobile-nav-links">
                 <li><a href="#home" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
                 <li><a href="#about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
                 <li><a href="#projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
                 <li><a href="#contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
             </ul>
-        <div class="language-selector" style="margin-top: 2rem;">
+        <div class="language-selector" style="margin-top: 2rem; margin-right: 15px; align-self: flex-start; transform: scale(0.8); display: flex; align-items: center; gap: 10px;">
             <button class="language-toggle" id="mobile-language-toggle">
                 <span class="flag-icon flag-tr"></span>
                 <span id="mobile-current-lang">TR</span>
@@ -1594,7 +1604,7 @@
                     <img src="resimler/poto.jpg" alt="Seloware Profil">
                 </div>
                 <h1 class="hero-title scroll-animate slide-in-left">Seloware</h1>
-                <p class="hero-subtitle scroll-animate slide-in-right" data-translate="Full Stack Developer">Mobil App & Front-End Developer</p>
+                <p class="hero-subtitle scroll-animate slide-in-right" data-translate="Full Stack Developer">Mobile App & Front-End Developer</p>
                 <p class="hero-description scroll-animate" data-translate="Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum">
                     Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum. 
                     Projelerinizi hayata geçirmek için buradayım.
@@ -1718,7 +1728,7 @@
                     <div class="card-icon">
                         <i class="fas fa-tasks"></i>
                     </div>
-                    <h3 class="card-title" data-translate="Task Management App">Task Management App</h3>
+                    <h3 class="card-title" data-translate="Görev Yönetimi Uygulaması">Görev Yönetimi Uygulaması</h3>
                     <p class="card-description" data-translate="Görev yönetimi uygulaması">
                         Görev yönetimi uygulaması. Kullanıcıların projelerini organize etmelerine yardımcı oluyor. 
                         Modern arayüz ve kullanıcı dostu deneyim.
@@ -2120,47 +2130,65 @@
         });
 
         // Mobile Menu Functionality
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        function initMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
 
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            mobileMenuToggle.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+            if (!mobileMenuToggle || !mobileMenu) {
+                console.error('Mobile menu elements not found');
+                return;
+            }
 
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
 
-        // Event listeners
-        mobileMenuToggle.addEventListener('click', openMobileMenu);
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
 
-        // Close menu when clicking on a link
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
+            // Event listeners
+            mobileMenuToggle.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
             });
-        });
-
-        // Close menu when clicking outside
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target === mobileMenu) {
-                closeMobileMenu();
+            
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMobileMenu);
             }
-        });
 
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
-            }
-        });
+            // Close menu when clicking on a link
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMobileMenu();
+                });
+            });
+
+            // Close menu when clicking outside
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+
 
         // Scroll Animation Functionality
         function initScrollAnimations() {
@@ -2201,7 +2229,7 @@
                 'Hakkımda': 'Hakkımda',
                 'Projeler': 'Projeler',
                 'İletişim': 'İletişim',
-                'Full Stack Developer': 'Mobil App & Front-End Developer',
+                'Full Stack Developer': 'Mobile App & Front-End Developer',
                 'Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum': 'Modern teknolojiler kullanarak mobil uygulamalar, web siteleri ve logo tasarımları geliştiriyorum. Projelerinizi hayata geçirmek için buradayım.',
                 'Projelerime Göz At': 'Projelerimi Gör',
                 'Benimle İletişime Geç': 'İletişime Geç',
@@ -2222,7 +2250,7 @@
                 'Modern ve kullanıcı dostu bir mobil uygulama': 'Modern ve kullanıcı dostu bir mobil uygulama. Flutter Dart kullanılarak geliştirildi. Responsive tasarım ve smooth animasyonlar içeriyor.',
                 'Portfolio Web Sitesi': 'Portfolio Web Sitesi',
                 'Kişisel portföy web sitesi': 'Kişisel portföy web sitesi. Modern tasarım prensipleri ve glassmorphism efektleri kullanılarak geliştirildi.',
-                'Task Management App': 'Task Management App',
+                'Görev Yönetimi Uygulaması': 'Görev Yönetimi Uygulaması',
                 'Görev yönetimi uygulaması': 'Görev yönetimi uygulaması. Kullanıcıların projelerini organize etmelerine yardımcı oluyor. Modern arayüz ve kullanıcı dostu deneyim.'
             },
             en: {
@@ -2251,7 +2279,7 @@
                 'Modern ve kullanıcı dostu bir mobil uygulama': 'A modern and user-friendly mobile application. Developed using Flutter Dart. Contains responsive design and smooth animations.',
                 'Portfolio Web Sitesi': 'Portfolio Website',
                 'Kişisel portföy web sitesi': 'Personal portfolio website. Developed using modern design principles and glassmorphism effects.',
-                'Task Management App': 'Task Management App',
+                'Görev Yönetimi Uygulaması': 'Task Management App',
                 'Görev yönetimi uygulaması': 'Task management application. Helps users organize their projects. Modern interface and user-friendly experience.'
             }
         };
@@ -2345,9 +2373,10 @@
             });
         }
 
-        // Initialize language selector when DOM is loaded
+        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             initLanguageSelector();
+            initMobileMenu();
         });
 
 
