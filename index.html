@@ -2053,11 +2053,16 @@
             observer.observe(el);
         });
 
-        // Rain animation
+        // Rain animation with performance optimization
         const rainContainer = document.getElementById('rain-container');
         const letters = 'seloware';
-
+        let rainActive = true;
+        let rainElements = [];
+        let rainInterval;
+        
         function createRain() {
+            if (!rainActive) return;
+            
             const letter = letters[Math.floor(Math.random() * letters.length)];
             const rainLetter = document.createElement('span');
             rainLetter.classList.add('rain-letter');
@@ -2066,14 +2071,72 @@
             rainLetter.style.animationDelay = Math.random() * 2 + 's';
             rainLetter.style.animationDuration = (Math.random() * 3 + 10) + 's';
             rainContainer.appendChild(rainLetter);
-
+            rainElements.push(rainLetter);
+            
+            // Remove element when animation ends
             rainLetter.addEventListener('animationend', () => {
-                rainLetter.remove();
+                removeRainElement(rainLetter);
             });
+            
+            // Performance optimization: Remove elements that reach bottom of screen
+            const checkPosition = () => {
+                if (rainLetter.parentNode) {
+                    const rect = rainLetter.getBoundingClientRect();
+                    if (rect.top > window.innerHeight + 50) {
+                        removeRainElement(rainLetter);
+                    } else {
+                        requestAnimationFrame(checkPosition);
+                    }
+                }
+            };
+            requestAnimationFrame(checkPosition);
         }
-
-        // Create rain letters
-        setInterval(createRain, 800);
+        
+        function removeRainElement(element) {
+            if (element && element.parentNode) {
+                element.remove();
+                const index = rainElements.indexOf(element);
+                if (index > -1) {
+                    rainElements.splice(index, 1);
+                }
+            }
+        }
+        
+        // Pause rain animation when page is not visible (performance optimization)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                rainActive = false;
+                if (rainInterval) {
+                    clearInterval(rainInterval);
+                    rainInterval = null;
+                }
+                // Clear existing rain elements when page is hidden
+                rainElements.forEach(element => removeRainElement(element));
+                rainElements = [];
+            } else {
+                rainActive = true;
+                if (!rainInterval) {
+                    rainInterval = setInterval(createRain, 800);
+                }
+            }
+        });
+        
+        // Reduce rain on mobile devices to save battery
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const rainIntervalTime = isMobile ? 1200 : 800; // Slower on mobile
+        
+        // Create rain letters with performance throttling
+        if (rainActive) {
+            rainInterval = setInterval(createRain, rainIntervalTime);
+        }
+        
+        // Clean up function for better memory management
+        window.addEventListener('beforeunload', () => {
+            if (rainInterval) {
+                clearInterval(rainInterval);
+            }
+            rainElements.forEach(element => removeRainElement(element));
+        });
 
         // Mouse Trail Effect
         const trail = [];
