@@ -100,10 +100,10 @@
             --text-secondary: #e2e8f0;
             --text-muted: #94a3b8;
             --text-accent: #60a5fa;
-            --bg-primary: #0f0f23;
-            --bg-secondary: #1a1a2e;
-            --bg-tertiary: #16213e;
-            --bg-card: rgba(26, 26, 46, 0.8);
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #111111;
+            --bg-card: rgba(10, 10, 10, 0.9);
             --bg-glass: rgba(255, 255, 255, 0.05);
             --border-color: rgba(148, 163, 184, 0.1);
             --border-accent: rgba(99, 102, 241, 0.3);
@@ -130,7 +130,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #111111 100%);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -166,7 +166,7 @@
         }
         
         .navbar.scrolled {
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(99, 102, 241, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -256,7 +256,7 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
@@ -373,7 +373,7 @@
             left: -100%;
             width: 100%;
             height: 100vh;
-            background: rgba(15, 23, 42, 0.98);
+            background: rgba(0, 0, 0, 0.99);
             backdrop-filter: blur(20px);
             z-index: 999;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -770,7 +770,7 @@
         .card {
             width: 280px;
             height: 350px;
-            background: #07182E;
+            background: #000000;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -781,6 +781,8 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         
         .card:hover::after {
@@ -929,7 +931,7 @@
         .card::after {
             content: '';
             position: absolute;
-            background: #07182E;
+            background: #000000;
             inset: 5px;
             border-radius: 15px;
         }
@@ -2739,11 +2741,52 @@
             });
         }
 
+        // Tilt Effect for Cards
+        function initTiltEffect() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / centerY * -15; // Max 15 degrees
+                    const rotateY = (x - centerX) / centerX * 15;  // Max 15 degrees
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                    
+                    // Add glow effect based on mouse position
+                    const glowX = (x / rect.width) * 100;
+                    const glowY = (y / rect.height) * 100;
+                    card.style.background = `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(99, 102, 241, 0.3) 0%, #000000 50%)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                    card.style.background = '#000000';
+                });
+                
+                // Enhanced hover effect
+                card.addEventListener('mouseenter', () => {
+                    card.style.boxShadow = '0 25px 50px rgba(99, 102, 241, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+                });
+            });
+        }
+
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             initLanguageSelector();
             initMobileMenu();
             initGallery();
+            initTiltEffect();
         });
 
 
