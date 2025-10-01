@@ -786,6 +786,82 @@
             margin: 0 auto;
         }
 
+        /* GitHub Icon Blinking Colorful Effect */
+        .github-blink {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-left: 10px;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+            animation: colorfulBlink 2s infinite;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .github-blink:hover {
+            animation: fastColorfulBlink 0.5s infinite;
+            transform: scale(1.1);
+        }
+
+        @keyframes colorfulBlink {
+            0% { 
+                color: #ec4899; 
+                text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899;
+            }
+            16.66% { 
+                color: #a855f7; 
+                text-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+            }
+            33.33% { 
+                color: #6366f1; 
+                text-shadow: 0 0 10px #6366f1, 0 0 20px #6366f1;
+            }
+            50% { 
+                color: #06b6d4; 
+                text-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4;
+            }
+            66.66% { 
+                color: #10b981; 
+                text-shadow: 0 0 10px #10b981, 0 0 20px #10b981;
+            }
+            83.33% { 
+                color: #f59e0b; 
+                text-shadow: 0 0 10px #f59e0b, 0 0 20px #f59e0b;
+            }
+            100% { 
+                color: #ec4899; 
+                text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899;
+            }
+        }
+
+        @keyframes fastColorfulBlink {
+            0% { 
+                color: #ec4899; 
+                text-shadow: 0 0 15px #ec4899, 0 0 30px #ec4899;
+                transform: scale(1.1);
+            }
+            25% { 
+                color: #a855f7; 
+                text-shadow: 0 0 15px #a855f7, 0 0 30px #a855f7;
+                transform: scale(1.15);
+            }
+            50% { 
+                color: #6366f1; 
+                text-shadow: 0 0 15px #6366f1, 0 0 30px #6366f1;
+                transform: scale(1.1);
+            }
+            75% { 
+                color: #06b6d4; 
+                text-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4;
+                transform: scale(1.15);
+            }
+            100% { 
+                color: #ec4899; 
+                text-shadow: 0 0 15px #ec4899, 0 0 30px #ec4899;
+                transform: scale(1.1);
+            }
+        }
+
         /* Cards */
         .card-grid {
             display: grid;
@@ -1911,7 +1987,7 @@
     <section id="projects" class="section">
         <div class="container">
             <div class="section-header scroll-animate">
-                <h2 class="section-title"><span data-translate="Projelerim">Projelerim</span> <a href="https://github.com/seloware" target="_blank" style="color: var(--accent-color); text-decoration: none; margin-left: 10px; font-size: 0.8em; transition: all 0.3s ease;" onmouseover="this.style.color='var(--secondary-color)'" onmouseout="this.style.color='var(--accent-color)'"><i class="fab fa-github"></i></a></h2>
+                <h2 class="section-title"><span data-translate="Projelerim">Projelerim</span> <a href="projeler.html" class="github-blink" title="Projeler Sayfasına Git"><i class="fab fa-github"></i></a></h2>
                 <p class="section-subtitle" data-translate="Son çalışmalarım ve projelerim">
                     Geliştirdiğim bazı projeler ve çalışmalar.
                 </p>
