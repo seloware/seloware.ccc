@@ -1,0 +1,9 @@
+# ads.txt - Authorized Digital Sellers
+# Learn more: https://iabtechlab.com/ads-txt/
+
+# Example entries (replace with your network IDs when available):
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# appnexus.com, 1234, RESELLER, f5ab79cb980f6290
+
+# Currently no ad networks are configured.
+# Once you set up Google AdSense or others, add their records here.

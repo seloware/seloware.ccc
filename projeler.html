@@ -393,6 +393,11 @@
             }
         }
     </style>
+    <script>
+        window.ADSENSE_CLIENT = 'ca-pub-4662547577601994';
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4662547577601994" 
+        crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="glass-bg"></div>
@@ -400,7 +405,22 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">Seloware</a>
+            <a href="index.html" class="brand-logo" aria-label="Seloware">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="gradS" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#6366f1"/>
+                        </linearGradient>
+                        <linearGradient id="gradW" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#06b6d4"/>
+                            <stop offset="100%" stop-color="#22d3ee"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="w-path" d="M36 8 C26 8 26 16 36 16 S46 24 36 24 C26 24 26 32 36 32 S46 40 36 40" stroke="url(#gradW)" stroke-width="4"/>
+                    <path class="s-path" d="M36 8 C26 8 26 16 36 16 S46 24 36 24 C26 24 26 32 36 32 S46 40 36 40" stroke="url(#gradS)" stroke-width="4"/>
+                </svg>
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Ana Sayfa</a></li>
                 <li><a href="index.html#about">Hakkımda</a></li>
@@ -426,6 +446,74 @@
                     Her proje modern teknolojiler kullanılarak özenle tasarlanmış ve geliştirilmiştir.
                 </p>
             </div>
+
+    <!-- Ads & Consent Styles -->
+    <style>
+        .ad-slot {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(6px);
+        }
+        .ad-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .ad-content {
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .ad-content { min-height: 120px; }
+        }
+        .ad-placeholder {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            z-index: 2000;
+            display: none;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 1rem;
+            backdrop-filter: blur(8px);
+        }
+        .cookie-banner.show {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .cookie-text { color: var(--text-primary); font-size: 0.95rem; }
+        .cookie-actions .btn { margin-left: 0.5rem; }
+    </style>
+
+    <!-- Ad Slot: Projects Top -->
+    <div class="ad-slot" id="ad-projects-top" aria-label="Reklam">
+        <div class="ad-label">Reklam</div>
+        <div class="ad-content" id="ad-projects-top-content"></div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite">
+        <div class="cookie-text">Bu sitede çerezler ve reklam teknolojileri kullanılıyor. Kabul ediyor musun?</div>
+        <div class="cookie-actions">
+            <button id="cookie-accept" class="btn btn-primary">Kabul Et</button>
+            <button id="cookie-reject" class="btn btn-secondary">Reddet</button>
+        </div>
+    </div>
 
             <div class="project-grid stagger-animation">
                 <!-- Mobil Uygulama Projesi -->
@@ -642,6 +730,73 @@
                     });
                 }
             });
+        });
+
+        // Ads & Cookie Consent Logic
+        function getAdsConsent() {
+            return localStorage.getItem('ads-consent');
+        }
+        function setAdsConsent(value) {
+            localStorage.setItem('ads-consent', value);
+        }
+        function renderAds() {
+            const top = document.getElementById('ad-projects-top-content');
+            const placeholder = `\n                <div class=\"ad-placeholder\">\n                    Reklam alanı — Buraya Google AdSense, affiliate banner veya sponsor içerik yerleştirilebilir.\n                </div>\n            `;
+            if (top) top.innerHTML = placeholder;
+        }
+        function hideAds() {
+            document.querySelectorAll('.ad-slot').forEach(slot => {
+                slot.style.display = 'none';
+            });
+        }
+        function initAdsConsent() {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('cookie-accept');
+            const rejectBtn = document.getElementById('cookie-reject');
+
+            const status = getAdsConsent();
+            if (status === 'accepted') {
+                renderAds();
+                injectAdScripts();
+            } else if (status === 'rejected') {
+                hideAds();
+            } else {
+                if (banner) banner.classList.add('show');
+            }
+
+            function injectAdScripts() {
+                try {
+                    const client = window.ADSENSE_CLIENT; // örnek: 'ca-pub-0000000000000000'
+                    if (!client) return; // ID girilmedi ise script yüklenmez
+                    // Daha önce yüklendiyse tekrar yükleme
+                    if (document.querySelector('script[data-adsense-loaded="true"]')) return;
+                    const s = document.createElement('script');
+                    s.setAttribute('data-adsense-loaded', 'true');
+                    s.async = true;
+                    s.crossOrigin = 'anonymous';
+                    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
+                    document.head.appendChild(s);
+                } catch (e) { /* no-op */ }
+            }
+
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    setAdsConsent('accepted');
+                    if (banner) banner.classList.remove('show');
+                    renderAds();
+                    injectAdScripts();
+                });
+            }
+            if (rejectBtn) {
+                rejectBtn.addEventListener('click', () => {
+                    setAdsConsent('rejected');
+                    if (banner) banner.classList.remove('show');
+                    hideAds();
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initAdsConsent();
         });
     </script>
 </body>
