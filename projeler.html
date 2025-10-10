@@ -539,7 +539,7 @@
                             <i class="fab fa-github"></i>
                             GitHub
                         </a>
-                        <a href="#" class="project-link secondary" onclick="event.preventDefault();" aria-disabled="true">
+                        <a href="#" id="task-app-demo" class="project-link secondary">
                             <i class="fas fa-external-link-alt"></i>
                             Demo
                         </a>
@@ -717,8 +717,160 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            initAdsConsent();
+             initAdsConsent();
+         });
+
+        // Gallery Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const galleryImages = [
+                'resimler/1.png',
+                'resimler/2.png',
+                'resimler/3.png',
+                'resimler/4.png'
+            ];
+            let galleryIndex = 0;
+
+            const modal = document.getElementById('galleryModal');
+            const imgEl = document.getElementById('galleryImage');
+            const btnPrev = document.getElementById('galleryPrev');
+            const btnNext = document.getElementById('galleryNext');
+            const btnClose = document.getElementById('galleryClose');
+            const demoLink = document.getElementById('task-app-demo');
+
+            function updateImage() {
+                imgEl.src = galleryImages[galleryIndex];
+            }
+            function openGallery(startIndex = 0) {
+                galleryIndex = startIndex;
+                updateImage();
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeGallery() {
+                modal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            function nextImage() {
+                galleryIndex = (galleryIndex + 1) % galleryImages.length;
+                updateImage();
+            }
+            function prevImage() {
+                galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateImage();
+            }
+
+            if (demoLink) {
+                demoLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openGallery(0);
+                });
+            }
+            if (btnClose) btnClose.addEventListener('click', closeGallery);
+            if (btnPrev) btnPrev.addEventListener('click', prevImage);
+            if (btnNext) btnNext.addEventListener('click', nextImage);
+
+            // Click backdrop to close
+            if (modal) {
+                modal.addEventListener('click', function (e) {
+                    if (e.target === modal) {
+                        closeGallery();
+                    }
+                });
+            }
+
+            // Keyboard controls
+            document.addEventListener('keydown', function (e) {
+                if (!modal.classList.contains('show')) return;
+                if (e.key === 'Escape') closeGallery();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            });
         });
     </script>
 </body>
 </html>
+
+    <!-- Gallery Styles -->
+    <style>
+        .gallery-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+        }
+        .gallery-modal.show { display: flex; }
+        .gallery-content {
+            position: relative;
+            max-width: 92vw;
+            max-height: 85vh;
+            padding: 1rem;
+            background: rgba(16, 16, 16, 0.8);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+        }
+        .gallery-image {
+            display: block;
+            max-width: 88vw;
+            max-height: 72vh;
+            width: auto;
+            height: auto;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .gallery-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+        .gallery-nav.prev { left: 8px; }
+        .gallery-nav.next { right: 8px; }
+        .gallery-nav:hover, .gallery-close:hover { box-shadow: var(--shadow-glow); }
+    </style>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="gallery-modal" aria-hidden="true">
+        <div class="gallery-content">
+            <button id="galleryClose" class="gallery-close" aria-label="Kapat">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="galleryImage" class="gallery-image" src="resimler/1.png" alt="Görev Yönetimi Uygulaması Ekran Görüntüsü">
+            <button id="galleryPrev" class="gallery-nav prev" aria-label="Önceki">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="galleryNext" class="gallery-nav next" aria-label="Sonraki">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
