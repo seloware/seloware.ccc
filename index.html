@@ -2169,6 +2169,10 @@
         </div>
     </section>
 
+    <footer class="site-footer" style="margin-top:2rem;padding:1rem 0;border-top:1px solid rgba(148,163,184,0.1);color:#94a3b8;text-align:center;">
+        © 2025 Seloware — <a href="gizlilik-politikasi.html" style="color:#e2e8f0;text-decoration:none;">Gizlilik Politikası</a>
+    </footer>
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2955,6 +2959,11 @@
                 slot.style.display = 'none';
             });
         }
+        function showAds() {
+            document.querySelectorAll('.ad-slot').forEach(slot => {
+                slot.style.display = '';
+            });
+        }
         function initAdsConsent() {
             const banner = document.getElementById('cookie-banner');
             const acceptBtn = document.getElementById('cookie-accept');
@@ -2962,13 +2971,13 @@
 
             const status = getAdsConsent();
             if (status === 'accepted') {
-                renderAds();
+                showAds();
                 injectAdScripts();
             } else if (status === 'rejected') {
                 hideAds();
             } else {
-                // Show banner if no decision yet
                 if (banner) banner.classList.add('show');
+                hideAds();
             }
 
             function injectAdScripts() {
@@ -2990,7 +2999,7 @@
                 acceptBtn.addEventListener('click', () => {
                     setAdsConsent('accepted');
                     if (banner) banner.classList.remove('show');
-                    renderAds();
+                    showAds();
                     injectAdScripts();
                 });
             }
