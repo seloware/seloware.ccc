@@ -51,6 +51,11 @@
         .site-footer { margin-top: 3rem; padding: 1rem 0; border-top: 1px solid var(--border-color); color: var(--text-muted); text-align: center; }
         .site-footer a { color: var(--text-secondary); text-decoration: none; }
         .site-footer a:hover { color: var(--primary-color); }
+        .cookie-manager { margin-top: 1.5rem; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 0.5rem; border: 1px solid var(--border-accent); color: var(--text-secondary); background: transparent; cursor: pointer; }
+        .btn + .btn { margin-left: 0.5rem; }
+        .btn.primary { background: var(--gradient-primary); color: #fff; border: none; }
+        .btn.danger { border-color: rgba(239, 68, 68, 0.5); color: #fecaca; }
     </style>
 </head>
 <body>
@@ -90,10 +95,22 @@
             <p>Çerez tercihlerinizi tarayıcınız üzerinden yönetebilir veya AdSense reklamlarını kişiselleştirmeyi <a href="https://adssettings.google.com/authenticated" target="_blank" rel="noopener">Google Reklam Ayarları</a> üzerinden kontrol edebilirsiniz.</p>
 
             <h2>İletişim</h2>
-            <p>Gizlilik politikası ile ilgili sorularınız için: <a href="mailto:contact@seloware.com">contact@seloware.com</a></p>
+            <p>Gizlilik politikası ile ilgili sorularınız için: <a href="mailto:selahattinyarali17@gmail.com">selahattinyarali17@gmail.com</a></p>
 
             <h2>Güncellemeler</h2>
             <p>Bu politika zaman zaman güncellenebilir. Güncellemeler bu sayfada yayınlanır ve yayınlandığı anda yürürlüğe girer.</p>
+            
+            <div class="cookie-manager">
+                <h2>Çerez Tercihlerini Yönet</h2>
+                <p>Çerez ve reklam tercihlerinizi burada güncelleyebilir veya sıfırlayabilirsiniz.</p>
+                <div style="margin-top:0.75rem;">
+                    <button id="cm-accept" class="btn primary"><i class="fas fa-check"></i> Kabul Et</button>
+                    <button id="cm-reject" class="btn"><i class="fas fa-ban"></i> Reddet</button>
+                    <button id="cm-reset-index" class="btn danger"><i class="fas fa-rotate-left"></i> Sıfırla ve Ana Sayfaya Dön</button>
+                    <button id="cm-reset-projects" class="btn danger"><i class="fas fa-rotate-left"></i> Sıfırla ve Projeler Sayfasına Dön</button>
+                </div>
+                <p style="margin-top:0.75rem;color:var(--text-muted);">Sıfırladıktan sonra ilgili sayfada çerez bantı tekrar görüntülenecektir.</p>
+            </div>
         </div>
         <a href="index.html" class="back-btn" title="Ana Sayfa"><i class="fas fa-home"></i></a>
 
@@ -102,4 +119,29 @@
         </footer>
     </main>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const acceptBtn = document.getElementById('cm-accept');
+    const rejectBtn = document.getElementById('cm-reject');
+    const resetIndexBtn = document.getElementById('cm-reset-index');
+    const resetProjectsBtn = document.getElementById('cm-reset-projects');
+
+    function setConsent(value) {
+        try {
+            localStorage.setItem('ads-consent', value);
+            alert('Çerez tercihiniz güncellendi: ' + value);
+        } catch (e) {}
+    }
+    function resetConsent() {
+        try {
+            localStorage.removeItem('ads-consent');
+        } catch (e) {}
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener('click', () => setConsent('accepted'));
+    if (rejectBtn) rejectBtn.addEventListener('click', () => setConsent('rejected'));
+    if (resetIndexBtn) resetIndexBtn.addEventListener('click', () => { resetConsent(); window.location.href = 'index.html'; });
+    if (resetProjectsBtn) resetProjectsBtn.addEventListener('click', () => { resetConsent(); window.location.href = 'projeler.html'; });
+});
+</script>
 </html>
