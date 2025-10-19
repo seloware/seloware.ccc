@@ -4,7 +4,6 @@
     <meta name="google-site-verification" content="Y8L6sFxRokNm_kPBsqSNUksVsN97Te5jrmM3yQq_gV4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#6366f1">
     <meta name="msapplication-TileColor" content="#6366f1">
     
     <!-- SEO Meta Tags -->
@@ -33,6 +32,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     
     <style>
         :root {
@@ -106,6 +106,7 @@
             z-index: 1000;
             padding: 1rem 2rem;
             background: rgba(0, 0, 0, 0.95);
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(99, 102, 241, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -208,6 +209,7 @@
 
         .project-card {
             background: var(--bg-glass);
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
@@ -436,7 +438,7 @@
     </a>
 
     <!-- Projects Section -->
-    <section class="section" style="padding-top: 8rem;">
+    <section class="section projects-section">
         <div class="container">
             <div class="section-header fade-in">
                 <h1 class="section-title">Projelerim</h1>
@@ -455,6 +457,7 @@
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            -webkit-backdrop-filter: blur(6px);
             backdrop-filter: blur(6px);
         }
         .ad-label {
@@ -487,6 +490,7 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 12px;
             padding: 1rem;
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
         }
         .cookie-banner.show {
@@ -533,7 +537,7 @@
                         <span class="tech-tag">Material Design</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/seloware" target="_blank" class="project-link">
+                        <a href="https://github.com/seloware" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i>
                             GitHub
                         </a>
@@ -561,7 +565,7 @@
                         <span class="tech-tag">Responsive Design</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/seloware" target="_blank" class="project-link">
+                        <a href="https://github.com/seloware" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i>
                             GitHub
                         </a>
@@ -590,24 +594,51 @@
                         <span class="tech-tag">PWA</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/seloware" target="_blank" class="project-link">
+                        <a href="https://github.com/seloware" target="_blank" rel="noopener" class="project-link">
                             <i class="fab fa-github"></i>
                             GitHub
                         </a>
-                        <a href="https://rabiadoğruözart.xyz" target="_blank" class="project-link secondary">
+                        <a href="https://rabiadoğruözart.xyz" target="_blank" rel="noopener" class="project-link secondary">
                             <i class="fas fa-external-link-alt"></i>
                             Demo
                         </a>
                     </div>
                 </div>
 
+                <!-- Küçük Ölçekli Ticari Site -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="project-title">Küçük Ölçekli Ticari Site</h3>
+                    <p class="project-description">
+                        Küçük işletmeler için özel tasarım ticari web sitesi. Modern e-ticaret çözümleri, 
+                        kullanıcı dostu arayüz ve responsive tasarım ile işletmenizi dijital dünyaya taşıyor.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">E-ticaret</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/seloware" target="_blank" rel="noopener" class="project-link">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                        <a href="https://www.isodenmodüler.com" target="_blank" rel="noopener" class="project-link secondary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Demo
+                        </a>
+                    </div>
+                </div>
 
             </div>
         </div>
      </section>
 
-     <footer class="site-footer" style="margin-top:2rem;padding:1rem 0;border-top:1px solid rgba(148,163,184,0.1);color:#94a3b8;text-align:center;">
-         © 2025 Seloware — <a href="gizlilik-politikasi.html" style="color:#e2e8f0;text-decoration:none;">Gizlilik Politikası</a>
+     <footer class="site-footer">
+         © 2025 Seloware — <a href="gizlilik-politikasi.html" class="footer-link">Gizlilik Politikası</a>
      </footer>
 
      <script>
@@ -807,6 +838,7 @@
             align-items: center;
             justify-content: center;
             background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
             z-index: 2000;
         }

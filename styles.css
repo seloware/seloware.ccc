@@ -1,0 +1,40 @@
+/* Inline styles extracted from index.html and projeler.html */
+
+/* Language selector styles */
+.language-arrow {
+    font-size: 0.8rem;
+}
+
+.mobile-language-selector {
+    margin-top: 2rem;
+    margin-right: 15px;
+    align-self: flex-start;
+    transform: scale(0.8);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Card styles */
+.task-management-card {
+    cursor: pointer;
+}
+
+/* Footer styles */
+.site-footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    color: #94a3b8;
+    text-align: center;
+}
+
+.footer-link {
+    color: #e2e8f0;
+    text-decoration: none;
+}
+
+/* Projects page specific styles */
+.projects-section {
+    padding-top: 8rem;
+}
