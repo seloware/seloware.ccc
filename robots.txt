@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seloware.com/sitemap.xml
+Sitemap: https://seloware.online/sitemap.xml
 
 # Google bots
 User-agent: Googlebot
