@@ -215,6 +215,48 @@
             align-items: center;
         }
 
+        .header-backlink {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            z-index: 1001;
+        }
+
+        .header-backlink:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .header-backlink.left {
+            left: 2rem;
+        }
+
+        .header-backlink.right {
+            right: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-backlink {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.5rem;
+            }
+            .header-backlink.left {
+                left: 0.75rem;
+            }
+            .header-backlink.right {
+                right: 0.75rem;
+            }
+        }
+
 
 
 
@@ -1875,6 +1917,8 @@
 
     <!-- Navigation -->
     <nav class="navbar">
+        <a href="https://www.TransWordly.com" class="header-backlink left" target="_blank" rel="noopener">www.TransWordly.com</a>
+        <a href="https://www.Cadeft.com" class="header-backlink right" target="_blank" rel="noopener">www.Cadeft.com</a>
         <div class="nav-container">
             <ul class="nav-links">
                 <li><a href="#home" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
